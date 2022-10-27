@@ -11,4 +11,10 @@
 #  updated_at :datetime         not null
 #
 class Product < ApplicationRecord
+  before_save
+  after_save :send_notification
+
+  def send_notification
+    puts "un nuevo producto fue añadido al almacen: #{self.title} #{self.price}"
+  end
 end
